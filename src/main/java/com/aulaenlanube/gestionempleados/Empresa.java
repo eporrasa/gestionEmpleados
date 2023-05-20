@@ -2,6 +2,8 @@ package com.aulaenlanube.gestionempleados;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class Empresa {
 
@@ -15,14 +17,19 @@ public class Empresa {
         this.empleados.add(e);
     }
 
-    public void eliminarEmpleado(String dni) throws EmpleadoNoEncontradoException{
-        for (Empleado empleado : empleados) {
-            if(empleado.getDni().equals(dni)){
-                empleados.remove(empleado);
-                return;
-            }            
+    public void eliminarEmpleado(String dni) {
+        try {
+            for (Empleado empleado : empleados) {
+                if (empleado.getDni().equals(dni)) {
+                    empleados.remove(empleado);
+                    System.out.println("El Empleado con DNI: " + dni + " ha sido eliminado.");
+                    return;
+                }
+            }
+            throw new EmpleadoNoEncontradoException("Error al eliminar - Empleado con DNI: " + dni + " no encontrado.");
+        } catch (EmpleadoNoEncontradoException e) {
+            System.out.println(e.getMessage());
         }
-        throw new EmpleadoNoEncontradoException("Error al eliminar - Empleado con DNI: " + dni + " no encontrado.");
     }
 
     public List<Empleado> getEmpleados() {

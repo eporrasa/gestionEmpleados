@@ -13,12 +13,8 @@ public class GestionEmpleados {
             System.out.println(empleado.toString());
         }
 
-        try {
-            empresa.eliminarEmpleado("91495845");
-            empresa.eliminarEmpleado("18568");
-        } catch (EmpleadoNoEncontradoException e) {
-            System.out.println(e.getMessage());
-        }
+        empresa.eliminarEmpleado("91495845");
+        empresa.eliminarEmpleado("18568");
 
         for (Empleado empleado : empresa.getEmpleados()) {
             System.out.println(empleado.toString());
