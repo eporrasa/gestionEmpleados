@@ -3,16 +3,26 @@ package com.aulaenlanube.gestionempleados;
 public class GestionEmpleados {
 
     public static void main(String[] args) {
-        Empresa emp = new Empresa();
-        
-        emp.agregarEmpleado(new EmpleadoFijo("Edwin", "Porras Angarita", "91495845", 150000, 11500));
-        emp.agregarEmpleado(new EmpleadoFijo("Jenny", "Rodriguez", "1032386073", 224000, 20000));
-        emp.agregarEmpleado(new EmpleadoPorHoras("Emma", "Porras Rodriguez", "1019914376", 120000, 45, 35));
-        
-        System.out.println(emp.toString());
-        
-        emp.eliminarEmpleado("14587");
-        
+        Empresa empresa = new Empresa();
+
+        empresa.agregarEmpleado(new EmpleadoFijo("Edwin", "Porras Angarita", "91495845", 150000, 11500));
+        empresa.agregarEmpleado(new EmpleadoFijo("Jenny", "Rodriguez", "1032386073", 224000, 20000));
+        empresa.agregarEmpleado(new EmpleadoPorHoras("Emma", "Porras Rodriguez", "1019914376", 120000, 45, 35));
+
+        for (Empleado empleado : empresa.getEmpleados()) {
+            System.out.println(empleado.toString());
+        }
+
+        try {
+            empresa.eliminarEmpleado("91495845");
+            empresa.eliminarEmpleado("18568");
+        } catch (EmpleadoNoEncontradoException e) {
+            System.out.println(e.getMessage());
+        }
+
+        for (Empleado empleado : empresa.getEmpleados()) {
+            System.out.println(empleado.toString());
+        }
 
     }
 }

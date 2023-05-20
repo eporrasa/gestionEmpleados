@@ -1,22 +1,31 @@
 package com.aulaenlanube.gestionempleados;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Empresa {
 
     private List<Empleado> empleados;
 
+    public Empresa() {
+        this.empleados = new ArrayList();
+    }
+
     public void agregarEmpleado(Empleado e) {
         this.empleados.add(e);
     }
 
-    public void eliminarEmpleado(String dni) {
-        try {
-            empleados.stream()
-                    .filter(e -> e.getDni().equals(dni))
-                    .forEach(System.out::println);
-        } catch (Exception e) {
+    public void eliminarEmpleado(String dni) throws EmpleadoNoEncontradoException{
+        for (Empleado empleado : empleados) {
+            if(empleado.getDni().equals(dni)){
+                empleados.remove(empleado);
+                return;
+            }            
         }
+        throw new EmpleadoNoEncontradoException("Error al eliminar - Empleado con DNI: " + dni + " no encontrado.");
     }
 
+    public List<Empleado> getEmpleados() {
+        return empleados;
+    }
 }

@@ -51,7 +51,7 @@ public abstract class Empleado {
 
     @Override
     public String toString() {
-        return "Empleado{" + "nombre=" + nombre + ", apellidos=" + apellidos + ", dni=" + dni + ", salario=" + salario + '}';
+        return "Nombre: " + nombre + ", Apellidos: " + apellidos + ", DNI:" + dni ;
     }
     
     public abstract double calcularSalario();

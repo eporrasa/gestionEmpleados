@@ -17,4 +17,9 @@ public class EmpleadoPorHoras extends Empleado {
         return this.horasTrabajadas * this.tarifaPorHora;
     }
 
+    @Override
+    public String toString() {
+        return super.toString() + ", Salario: " + calcularSalario() ;
+    }
+
 }
